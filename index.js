@@ -59,7 +59,9 @@ app.get("/campgrounds/new", async (req, res) => {
 });
 app.post("/campgrounds/submit", async (req, res) => {
   try {
-    res.send(req.body);
+    const campground = new Campground(req.body.campground);
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
   } catch (e) {
     console.log("Error from /Campground/submit: \n", e);
     res.render("error", { e });
