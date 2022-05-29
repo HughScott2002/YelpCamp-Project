@@ -72,7 +72,7 @@ app.post("/campgrounds/submit", async (req, res) => {
       req.body.campground
       //   {
       //     _id: req.body.id,
-      //     image: "http://source.unsplash.com/collection/483251",
+      //     image: ,
       //     title: req.body.title,
       //     price: req.body.price,
       //     description: req.body.description,
