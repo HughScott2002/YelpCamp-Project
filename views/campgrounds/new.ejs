@@ -1,36 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campgrounds Form</title>
-</head>
-<body>
-    <h1>Campgrounds Form</h1>
-    <form action="/campgrounds/submit" method="POST">
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id = "title" name="campground[title]" placeholder="Name a Campground">
-        </div>
-        <div>
-            <label for="price">Price</label>
-            <input type="text" id = "price" name="campground[price]" placeholder="Price of Campground">
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id = "description" name="campground[description]" placeholder="Description of Campground">
-        </div>
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id = "location" name="campground[location]" placeholder="Location of Campground">
-        </div>
-        <button type="submit">Submit</button>
-    </form>
-    <footer>
-        <a href="/campgrounds">ALL Campgrounds</a>
-    </footer>
+<% layout('layouts/boilerplate') %> 
+    <h1 class="display-4 lead">Campgrounds Form</h1>
     
-</body>
-</html>
+    <form action="/campgrounds/submit" method="POST">
+        <div class="card d-flex flex-column mb-auto " style="width: 25rem;">
+            <!-- <img src=" " class="card-img-top" alt="..."> -->
+            <div class="card-body">
+              <h5 class="card-title text-center " >Enter here:</h5>
+              <!-- <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <label for="title">Title</label>
+                    <input type="text" id = "title" name="campground[title]" placeholder="Eg. Camp Rock">
+                </li>
+                <li class="list-group-item">
+                    <label for="price">Price</label>
+                    <input type="text" id = "price" name="campground[price]" placeholder="Eg. 40000.00">
+                </li>
+                <li class="list-group-item">
+                <label for="description">Description</label>
+                    <input type="text" id = "description" name="campground[description]" placeholder="Eg. This a example">
+                </li>
+                <li class="list-group-item">
+                    <label for="location">Location</label>
+                    <input type="text" id = "location" name="campground[location]" placeholder="Eg. Anywhere and Always">
+                </li>
+                            
+            </ul>
+            <div class="card-body">
+                <button type="submit" class="btn btn-outline-success">Submit</button>
+                <a href=""></a>
+                <a href="/campgrounds" class="card-link ">ALL Campgrounds</a>
+            </div>
+            <input type="hidden" id = "image" name="campground[image]" placeholder="Eg. DONT CHANGE" value="http://source.unsplash.com/collection/483251">
+
+            
+    </form>
+   
+
 

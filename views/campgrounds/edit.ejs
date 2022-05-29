@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Campgrounds Form</title>
-</head>
-<body>
+<% layout('layouts/boilerplate') %> 
     <h1>Edit Campgrounds Form</h1>
     <form action="/campgrounds/<%= campground._id %>?_method=PUT " method="POST">
         <div>
@@ -29,7 +21,7 @@
             <input type="text" id = "location" 
             name="campground[location]" placeholder="Location of Campground" value="<%= campground.location %>">
         </div>
-        <button type="submit">Update</button>
+        <button type="submit"  class="btn btn-outline-success">Update</button>
     </form>
     <footer>
         <a href="/campgrounds/<%= campground._id %> ">Back to <%= campground.title %> </a>
@@ -38,6 +30,4 @@
         <a href="/campgrounds">All Campgrounds</a>
     </footer>
     
-</body>
-</html>
 

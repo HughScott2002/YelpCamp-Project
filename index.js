@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const Campground = require("./models/campground");
 const Override = require("method-override");
 const morgan = require("morgan");
+const ejsMate = require("ejs-mate");
 //Database
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
   useNewUrlParser: true,
@@ -25,13 +26,15 @@ try {
   console.log("Database Not found", e);
 }
 
-//RESTful Routes
+//<Middleware>
 const app = express();
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(Override("_method"));
 app.use(morgan("dev"));
+//</Middleware>
 
 //Root Route
 app.get("/", (req, res) => {
@@ -51,6 +54,8 @@ app.get("/campgrounds", async (req, res) => {
     res.render("error", { e });
   }
 });
+
+//Add new Campground
 app.get("/campgrounds/new", async (req, res) => {
   try {
     //const campground = await Campground.findById(req.params.id);
@@ -60,9 +65,20 @@ app.get("/campgrounds/new", async (req, res) => {
     res.render("error", { e });
   }
 });
+//Submit Campground
 app.post("/campgrounds/submit", async (req, res) => {
   try {
-    const campground = new Campground(req.body.campground);
+    const campground = new Campground(
+      req.body.campground
+      //   {
+      //     _id: req.body.id,
+      //     image: "http://source.unsplash.com/collection/483251",
+      //     title: req.body.title,
+      //     price: req.body.price,
+      //     description: req.body.description,
+      //     location: req.body.location,
+      //   }
+    );
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`);
   } catch (e) {
@@ -70,6 +86,7 @@ app.post("/campgrounds/submit", async (req, res) => {
     res.render("error", { e });
   }
 });
+// Edit Campground
 app.get("/campgrounds/:id/edit", async (req, res) => {
   try {
     const campground = await Campground.findById(req.params.id);
@@ -80,6 +97,7 @@ app.get("/campgrounds/:id/edit", async (req, res) => {
     res.render("error", { e });
   }
 });
+//Find and Update the editied Campground
 app.put("/campgrounds/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -94,6 +112,8 @@ app.put("/campgrounds/:id", async (req, res) => {
     res.render("error", { e });
   }
 });
+
+//Finds and Deletes a Campground
 app.delete("/campgrounds/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -105,7 +125,7 @@ app.delete("/campgrounds/:id", async (req, res) => {
     res.render("error", { e });
   }
 });
-
+//Go to Campground with the id
 app.get("/campgrounds/:id", async (req, res) => {
   //const campground =  await Campground.findById(req.params.id);
   try {
