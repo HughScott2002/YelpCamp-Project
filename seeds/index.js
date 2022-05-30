@@ -36,12 +36,14 @@ const seedDB = async () => {
   await Campground.deleteMany({});
   for (let i = 0; i < 50; i++) {
     const r = rand(999);
-    const s = `${sample(seed.descript)} ${sample(seed.types)}`;
+    const arry = [`${sample(seed.descript)}`, `${sample(seed.types)}`];
+    const s = `${arry[0]} ${arry[1]}`;
+    const dis = `${arry[1]}`;
     const camp = new Campground({
       image: "http://source.unsplash.com/collection/483251",
       title: s,
       price: rand(10000),
-      description: `${sample(seed.types)}`,
+      description: dis,
       location: `${sample(seed.places)}`,
     });
     await camp.save();

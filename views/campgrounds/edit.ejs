@@ -1,33 +1,46 @@
-<% layout('layouts/boilerplate') %> 
-    <h1>Edit Campgrounds Form</h1>
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <div class="col-6 offset-3">
+    <h1 class="text-center display-4">Edit Campground</h1>
     <form action="/campgrounds/<%= campground._id %>?_method=PUT " method="POST">
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id = "title" 
-            name="campground[title]" placeholder="Name a Campground" value="<%= campground.title %>">
+        <div class="mt-5 mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="text" id="image" class="form-control" name="campground[image]" placeholder="http://source.unsplash.com/collection/483251" value="http://source.unsplash.com/collection/483251">
         </div>
-        <div>
-            <label for="price">Price</label>
-            <input type="text" id = "price" 
-            name="campground[price]" placeholder="Price of Campground" value="<%= campground.price %>">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text"class="form-control" id = "title" name="campground[title]" placeholder="Eg. Camp Rock" value="<%= campground.title %>" >
         </div>
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id = "description" 
-            name="campground[description]" placeholder="Description of Campground" value="<%= campground.description %>">
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">$</span>
+                <input type="text" class="form-control" id = "price" name="campground[price]" placeholder="10.00" aria-label="price" value="<%= campground.price %>" >
+            </div>
         </div>
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id = "location" 
-            name="campground[location]" placeholder="Location of Campground" value="<%= campground.location %>">
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id = "location" name="campground[location]" placeholder="Genborrow Place" value="<%= campground.location %>" >
         </div>
-        <button type="submit"  class="btn btn-outline-success">Update</button>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="text" class="form-control" id = "description" name="campground[description]" placeholder="This is an example"><%= campground.description %></textarea>
+        </div>
+        
+        <div class="container">
+            <div class="row row-cols-auto">
+                <div class="col">
+                    <button type="submit"  class="btn btn-outline-success">Update</button>
+                </div>
+              <div class="col">
+                <a class="btn btn-outline-primary" href="/campgrounds/<%= campground._id %>">Back to <%= campground.title %> </a>
+                </div>
+            </div>
+          </div>
+        
     </form>
-    <footer>
-        <a href="/campgrounds/<%= campground._id %> ">Back to <%= campground.title %> </a>
-        <br>
-        <br>
-        <a href="/campgrounds">All Campgrounds</a>
-    </footer>
-    
+
+    </div>
+</div>  
 
