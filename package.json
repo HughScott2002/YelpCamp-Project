@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HughScott2002/Web-Project-YelpCamp.git"
+    "url": "git+https://github.com/HughScott2002/YelpCamp-Project.git"
   },
   "keywords": [
     "WebApp",
@@ -17,9 +17,9 @@
   "author": "Hugh R. Scott",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HughScott2002/Web-Project-YelpCamp/issues"
+    "url": "https://github.com/HughScott2002/YelpCamp-Project/issues"
   },
-  "homepage": "https://github.com/HughScott2002/Web-Project-YelpCamp#readme",
+  "homepage": "https://github.com/HughScott2002/YelpCamp-Project#readme",
   "dependencies": {
     "ejs": "^3.1.8",
     "ejs-mate": "^4.0.0",

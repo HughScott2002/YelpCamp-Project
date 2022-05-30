@@ -1,19 +1,35 @@
-<% layout('layouts/boilerplate') %> 
-    <h1 class="display-4"><%= campground.title %> </h1>
-    <h3 class="display-4"><%= campground.location %> </h3>
-    <img src="<%= campground.image %>" alt="Responsive image" class="img-fluid">
-    <p><%= campground.description %> </p>
+<% layout('layouts/boilerplate') %>
 
-    <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-        <button class="btn btn-danger">
-            DELETE
-        </button>
-    </form>
-    
-    <div>
-        <br>
-        <br>
-        <a href="/campgrounds">All Campgrounds</a>
-        <br>
-        <a href="/campgrounds/<%= campground._id %>/edit ">Edit</a>
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mt-3 mb-3">
+            <img class="card-img-top" src="<%= campground.image %>" alt="Responsive image" >
+            <div class="card-body">
+              <h5 class="card-title display-4 text-center"><%= campground.title %></h5>
+              <p class="card-text lead"><%= campground.description %> </p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-muted"><%= campground.location %></li>
+              <li class="list-group-item">$<%= campground.price %>/per night</li>
+              <!-- <li class="list-group-item">A third item</li> -->
+            </ul>
+            <div class="card-body">
+                <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="mb-3 row-cols-auto">
+                    <a class="btn btn-warning"href="/campgrounds">All Campgrounds</a>
+                    <a class="btn btn-outline-success" href="/campgrounds/<%= campground._id %>/edit ">Edit</a>
+                    <button class="btn btn-danger">
+                        DELETE
+                    </button>
+                </form>
+            </div>
+            <div class="card-footer text-muted text-end">
+                <%= Math.floor(campground.price/365) %>  day(s) ago
+            </div>
+          </div>
     </div>
+</div>
+
+
+    
+    
+    

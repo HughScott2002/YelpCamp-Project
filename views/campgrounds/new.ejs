@@ -2,25 +2,50 @@
 <div class="row">
     <div class="col-6 offset-3">
         <h1 class="text-center mt-4 display-4">New Campground</h1>
-        <form action="/campgrounds/submit" method="POST">
+        <form action="/campgrounds/submit" method="POST" class="valiform" novalidate>
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text"class="form-control" id = "title" name="campground[title]" placeholder="Eg. Camp Rock">
+                <input type="text"class="form-control" id = "title" name="campground[title]" placeholder="Eg. Camp Rock" required>
+                <div class="invalid-feedback">
+                    Not Valid
+                </div>
+                <div class="valid-feedback">
+                    Valid
+                </div>
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">$</span>
-                    <input type="text" class="form-control" id = "price" name="campground[price]" placeholder="10.00" aria-label="price">
+                    <input type="text" class="form-control" id = "price" name="campground[price]" placeholder="10.00" aria-label="price" required>
+                    <div class="invalid-feedback">
+                        Not Valid
+                    </div>
+                    <div class="valid-feedback">
+                        Valid
+                    </div>
                 </div>
+                
             </div>
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
-                <input type="text" class="form-control" id = "location" name="campground[location]" placeholder="Genborrow Place">
+                <input type="text" class="form-control" id = "location" name="campground[location]" placeholder="Genborrow Place" required>
+                <div class="invalid-feedback">
+                    Not Valid
+                </div>
+                <div class="valid-feedback">
+                    Valid
+                </div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea type="text" class="form-control" id = "description" name="campground[description]" placeholder="This is an example"></textarea>
+                <textarea type="text" class="form-control" id = "description" name="campground[description]" placeholder="This is an example" required></textarea>
+                <div class="invalid-feedback">
+                    Not Valid
+                </div>
+                <div class="valid-feedback">
+                    Say it!
+                </div>
             </div>
             <input type="text" id="image" class="d-none" name="campground[image]" value="http://source.unsplash.com/collection/483251">
         
@@ -30,7 +55,7 @@
                       <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                   <div class="col">
-                    <a class="btn btn-outline-primary" href="/campgrounds">Back to Campgrounds </a>
+                    <a class="btn btn-outline-primary" href="/campgrounds">Back</a>
                     </div>
                 </div>
               </div>
