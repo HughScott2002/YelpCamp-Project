@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Campground = require("../models/campground");
+const Report = require("../models/report");
 const cities = require("./cities");
 const seed = require("./seedHelpers");
 
@@ -34,7 +35,7 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
   await Campground.deleteMany({});
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 10; i++) {
     const r = rand(999);
     const arry = [`${sample(seed.descript)}`, `${sample(seed.types)}`];
     const s = `${arry[0]} ${arry[1]}`;
@@ -46,8 +47,22 @@ const seedDB = async () => {
       description: dis,
       location: `${sample(seed.places)}`,
     });
+    console.log(camp);
     await camp.save();
   }
 };
 
+const seedReports = async () => {
+  await Report.deleteMany({});
+  for (let i = seed.error.length; i > 0; i--) {
+    const rep = new Report({
+      name: `${sample(seed.namesList)}`,
+      error: `${sample(seed.error)}`,
+    });
+    console.log(rep);
+    await rep.save();
+  }
+};
+
 seedDB();
+seedReports();
