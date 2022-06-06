@@ -35,7 +35,7 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
   await Campground.deleteMany({});
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 1; i++) {
     const r = rand(999);
     const arry = [`${sample(seed.descript)}`, `${sample(seed.types)}`];
     const s = `${arry[0]} ${arry[1]}`;
@@ -52,17 +52,4 @@ const seedDB = async () => {
   }
 };
 
-const seedReports = async () => {
-  await Report.deleteMany({});
-  for (let i = seed.error.length; i > 0; i--) {
-    const rep = new Report({
-      name: `${sample(seed.namesList)}`,
-      error: `${sample(seed.error)}`,
-    });
-    console.log(rep);
-    await rep.save();
-  }
-};
-
 seedDB();
-seedReports();

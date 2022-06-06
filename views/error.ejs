@@ -3,12 +3,12 @@
     <div class="col-6 offset-3">
         <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">Error!</h4>
-            <p> <%= err %> </p>
+            <p> <%= err.message %> </p>
             <hr>
-            <p class="mb-2">Sorry something went wrong. You can use the botton below to go back o use the other one to report and error.</p>
+            <p class="mb-2"><%= err.stack %> </p>
+            <!-- <p class="mb-2">Sorry something went wrong. You can use the botton below to go back o use the other one to report and error.</p> -->
 
             <a href="/campgrounds" class="btn btn-success">Home</a>
-            <a href="/campgrounds/report" class="btn btn-info d-inline ml-7">Report</a>
         </div>
     </div>
 </div>
