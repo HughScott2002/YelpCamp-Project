@@ -33,11 +33,14 @@ router.post(
   passport.authenticate("local", {
     failureFlash: true,
     failureRedirect: "/login",
+    keepSessionInfo: true,
   }),
   catchAsync(async (req, res) => {
     const { username } = req.body;
+    const urlRedirecter = req.session.returnTo || "/campgrounds";
     req.flash("success", `Welcome back ${username}`);
-    res.redirect("/campgrounds");
+    res.redirect(urlRedirecter);
+    delete req.session.returnTo;
   })
 );
 

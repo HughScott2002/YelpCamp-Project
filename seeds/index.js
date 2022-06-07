@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Campground = require("../models/campground");
-const Report = require("../models/report");
-const cities = require("./cities");
+// const Report = require("../models/report");
+// const cities = require("./cities");
 const seed = require("./seedHelpers");
 
 //Database
@@ -35,12 +35,13 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
   await Campground.deleteMany({});
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 10; i++) {
     const r = rand(999);
     const arry = [`${sample(seed.descript)}`, `${sample(seed.types)}`];
     const s = `${arry[0]} ${arry[1]}`;
     const dis = `${arry[1]}`;
     const camp = new Campground({
+      author: "629ecb00bc32da83e064902b",
       image: "http://source.unsplash.com/collection/483251",
       title: s,
       price: rand(10000),
