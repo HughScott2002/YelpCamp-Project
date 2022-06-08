@@ -3,20 +3,7 @@ const router = express.Router();
 
 const Campground = require("../models/campground");
 const catchAsync = require("../utils/catchAsync");
-const ExpressError = require("../utils/ErrorFile");
-const { campgroundSchema } = require("../validations/validations");
-const { isLoggedIn } = require("../middleware");
-// const flash = require("connect-flash");
-
-const validateCampground = (req, res, next) => {
-  const { error } = campgroundSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(msg, 400);
-  } else {
-    next();
-  }
-};
+const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 
 //Route for all Campgrounds
 router.get(
@@ -69,10 +56,10 @@ router.get(
 router.put(
   "/:id",
   isLoggedIn,
+  isAuthor,
   validateCampground,
   catchAsync(async (req, res, next) => {
     const id = req.params.id;
-    //res.render("campgrounds/edit", { campground });
     const campground = await Campground.findByIdAndUpdate(id, {
       ...req.body.campground,
     });
@@ -83,6 +70,7 @@ router.put(
 //Finds and Deletes a Campground
 router.delete(
   "/:id",
+  isAuthor,
   isLoggedIn,
   catchAsync(async (req, res, next) => {
     const id = req.params.id;
@@ -96,6 +84,7 @@ router.delete(
 router.get(
   "/:id/edit",
   isLoggedIn,
+  isAuthor,
   catchAsync(async (req, res, next) => {
     const campground = await Campground.findById(req.params.id);
     if (!campground) {

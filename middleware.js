@@ -1,14 +1,44 @@
-module.exports.isLoggedIn = (req, res, next) => {
+const x = module.exports;
+const { campgroundSchema, reviewSchema } = require("./validations/validations");
+const ExpressError = require("./utils/ErrorFile");
+const Campground = require("./models/campground");
+
+x.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     //Keep track off the website being requested
-    // console.log(" Path: ", req.path, "Url: ", req.url);
-    // console.dir("Path: ", req.originalUrl); // '/admin/new?sort=desc'
-    // console.dir("Path: ", req.baseUrl); // '/admin'
-    // console.dir("Path: ", req.path); // '/new'
-    // console.log("\n\n\n Req....\n", req);
     req.session.returnTo = req.originalUrl;
     req.flash("error", "Please login");
     return res.redirect("/login");
   }
   next();
+};
+
+x.validateCampground = (req, res, next) => {
+  const { error } = campgroundSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(msg, 400);
+  } else {
+    next();
+  }
+};
+
+x.isAuthor = async (req, res, next) => {
+  const { id } = req.params;
+  const campground = await Campground.findById(id);
+  if (!campground.author.equals(req.user._id)) {
+    req.flash("error", "You don't have permission to do that!");
+    return res.redirect(`/campgrounds/${id}`);
+  }
+  next();
+};
+
+x.validateReview = (req, res, next) => {
+  const { error } = reviewSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(msg, 400);
+  } else {
+    next();
+  }
 };

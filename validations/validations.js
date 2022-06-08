@@ -11,13 +11,6 @@ x.campgroundSchema = Joi.object({
   }).required(),
 });
 
-x.reportSchema = Joi.object({
-  report: Joi.object({
-    name: Joi.string().required(),
-    error: Joi.string().required(),
-  }).required(),
-});
-
 x.reviewSchema = Joi.object({
   review: Joi.object({
     body: Joi.string().required(),
