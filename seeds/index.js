@@ -42,7 +42,20 @@ const seedDB = async () => {
     const dis = `${arry[1]}`;
     const camp = new Campground({
       author: "629ecb00bc32da83e064902b",
-      image: "http://source.unsplash.com/collection/483251",
+      images: [
+        {
+          url: "https://res.cloudinary.com/dvmsgwcg7/image/upload/v1654909692/YelpCamp/hd7aeh0v10fefhmn1kvl.jpg",
+          filename: "YelpCamp/hd7aeh0v10fefhmn1kvl",
+        },
+        {
+          url: "https://res.cloudinary.com/dvmsgwcg7/image/upload/v1654909692/YelpCamp/kh2gvvqynuwes3pxhp36.jpg",
+          filename: "YelpCamp/kh2gvvqynuwes3pxhp36",
+        },
+        {
+          url: "https://res.cloudinary.com/dvmsgwcg7/image/upload/v1654909693/YelpCamp/euzonsfk9ew4xlj8sudd.jpg",
+          filename: "YelpCamp/euzonsfk9ew4xlj8sudd",
+        },
+      ],
       title: s,
       price: rand(10000),
       description: dis,

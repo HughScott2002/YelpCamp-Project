@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 // Imports;
 const express = require("express");
 const { engine } = require("express/lib/application");
@@ -17,7 +21,7 @@ const ExpressError = require("./utils/ErrorFile");
 const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
-
+const PORT = 3000;
 //Database
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
   useNewUrlParser: true,
@@ -73,10 +77,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-  console.log("RETURN TO", req.session.returnTo);
-  // console.dir("Path: ", req.originalUrl); // '/admin/new?sort=desc'
-  // console.dir("Path: ", req.baseUrl); // '/admin'
-  // console.dir("Path: ", req.path);
   res.locals.user = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
@@ -112,6 +112,6 @@ app.use((err, req, res, next) => {
 });
 
 //Localhost:3000
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Hosting on port 3000");
 });
