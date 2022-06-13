@@ -55,6 +55,16 @@
                 Say it!
             </div>
         </div>
+
+        <div class="mb-3">
+            <% campground.images.forEach((img, i)=>{ %>
+                <img src=" <%= img.thumbnail %>  " class="img-thumbnail" alt="">
+                <div class="form-check-inline">
+                    <input type="checkbox" id="img-<%= i %>" name="deleteImages[]" value="<%=img.filename%>" >
+                </div>
+                <label for="img-<%= i %>">Delete</label>
+           <%  }) %> 
+        </div>
         
         <div class="container">
             <div class="row row-cols-auto">
@@ -62,7 +72,7 @@
                     <button type="submit"  class="btn btn-outline-success">Update</button>
                 </div>
               <div class="col">
-                <a class="btn btn-outline-primary" href="/campgrounds/<%= campground._id %>">Back to <%= campground.title %> </a>
+                <a href="/campgrounds/62a628818284597712abf5fe" class="btn btn-outline-primary mb-3">Back</a>
                 </div>
             </div>
           </div>
